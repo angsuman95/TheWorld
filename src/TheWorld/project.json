@@ -15,11 +15,11 @@
       "version": "1.0.0-preview1-final",
       "type": "build"
     },
-    "Microsoft.NETCore.App":
-    {
+    "Microsoft.NETCore.App": {
       "version": "1.0.0-rc2-3002702",
       "type": "platform"
-    }
+    },
+    "Microsoft.Extensions.Logging.Debug": "1.0.0-rc2-final"
   },
 
   "tools":

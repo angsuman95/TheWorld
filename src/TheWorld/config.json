@@ -5,6 +5,7 @@
   },
   "Data":
   {
-    "WorldContextConnection": "Data Source=(localdb)\\ProjectsV13;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
+    //"WorldContextConnection": "Server=tcp:angsu-db-server.database.windows.net,1433;Data Source=angsu-db-server.database.windows.net;Initial Catalog=the-world-angsu-db;Persist Security Info=False;User ID=dbadmin;Password=Qwerty!@34;Pooling=False;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;ConnectRetryCount=3;ConnectRetryInterval=10;Connection Timeout=30;"
+    "WorldContextConnection": "Server=(localdb)\\ProjectsV13;Database=TheWorldDB;Trusted_Connection=true;MultipleActiveResultSets=true;"
   }
 }

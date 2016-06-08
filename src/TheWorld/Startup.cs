@@ -6,6 +6,7 @@ using System.IO;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using TheWorld.Models;
+using Microsoft.Extensions.Logging;
 
 namespace TheWorld
 {
@@ -29,7 +30,12 @@ namespace TheWorld
         {
             services.AddMvc();
 
+            services.AddLogging();
+
             services.AddDbContext<WorldContext>();
+
+            services.AddTransient<WorldContextSeedData>();
+            services.AddScoped<IWorldRepository, WorldRepository>();
 
 #if DEBUG
             services.AddScoped<IMailService, DebugMailService>();
@@ -39,8 +45,10 @@ namespace TheWorld
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, WorldContextSeedData seeder, ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddDebug(LogLevel.Warning);
+
             app.UseStaticFiles();
 
             app.UseMvc(config =>
@@ -51,6 +59,8 @@ namespace TheWorld
                     defaults: new { controller = "App", action = "Index" }
                     );
             });
+
+            seeder.EnsureSeedData();
         }
 
         public static void Main(string[] args)

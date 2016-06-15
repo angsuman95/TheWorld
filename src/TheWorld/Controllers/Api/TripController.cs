@@ -4,15 +4,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TheWorld.Models;
 
 namespace TheWorld.Controllers.Api
 {
+    [Route("api/trips")]
     public class TripController : Controller
     {
-        [HttpGet("api/trips")]
+        private IWorldRepository _repository;
+
+        public TripController(IWorldRepository repository)
+        {
+            _repository = repository;
+        }
+
+        [HttpGet("")]
         public JsonResult Get()
         {
-            return Json(new { name = "Angsu" });
+            var results = _repository.GetAllTripsWithStops();
+            return Json(results);
+        }
+
+        [HttpPost("")]
+        public JsonResult Post([FromBody]Trip newTrip)
+        {
+            return Json(true);
         }
     }
 }
